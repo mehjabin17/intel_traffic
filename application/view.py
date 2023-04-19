@@ -130,7 +130,7 @@ def settings_upload_video():
     if request.method == 'POST':
         error = False
         if 'file' not in request.files:
-            flash('No file is added.', category="error")
+            flash('Please add a file', category="error")
             error = True
         file = request.files['file']
         if file.filename == '':
