@@ -153,7 +153,7 @@ def settings_upload_video():
 
         if not error:
             if not add_media(video_name, filePath, StreamType.video, area_id, lat, lng):
-                flash("Cannot add rtsp link, already exists or area not found!", category='error')
+                flash("Cannot add video, already exists or area not found!", category='error')
             else:
                 flash("Video uploaded successfully!", category='success')
     return redirect(url_for('view.settings'))
