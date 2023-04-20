@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from werkzeug.security import check_password_hash
 from .models import User
 from flask_login import login_user, login_required, logout_user, current_user
-from .dal import add_user
 
 auth = Blueprint('auth', __name__)
 
@@ -12,6 +11,7 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
@@ -51,6 +51,7 @@ def create_user():
         elif len(password1) < 4:
             flash('Password must be of minimum length 4')
         else:
+            from .dal import add_user
             if not add_user(email, password1):
                 flash('Email already exists', category='error')
     return render_template('signup.html')

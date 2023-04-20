@@ -4,13 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_navigation import Navigation
 from flask_login import LoginManager
 from os import path
-from cryptography.fernet import Fernet
-import base64
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-
-password = b"malihamitu"
-salt = os.urandom(16)
 
 db = SQLAlchemy()
 DB_NAME = "traffic.db"
@@ -19,24 +12,17 @@ CLIP_FOLDER = './clips'
 RECORDS_FOLDER = "./records"
 SECRET_KEY = "The World is not Enough"
 
-kdf = PBKDF2HMAC(
-    algorithm=hashes.SHA256(),
-    length=32,
-    salt=salt,
-    iterations=480000,
-)
-key = base64.urlsafe_b64encode(kdf.derive(password))
-fernet = Fernet(key)
 
-
-
-def create_database(app, drop=False, create=False):
-    with app.app_context():
-        if drop:
+def create_database(app, drop=False):
+    if drop:
+        with app.app_context():
+            print("droped database")
             db.drop_all()
-        if create:
+
+    if not path.exists('application/' + DB_NAME):
+        with app.app_context():
             db.create_all()
-        db.create_all()
+            print("created database")
 
 
 def create_folders():
@@ -68,7 +54,7 @@ def create_app():
     db.init_app(app)
 
     from .models import User
-    create_database(app, False, False)
+    create_database(app, True)
 
     # register login models and intialize Login Manager
     login_manager = LoginManager()
