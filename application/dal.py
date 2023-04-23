@@ -57,7 +57,7 @@ def add_area(name, description, lat, long):
     return result
 
 
-def add_media(name, path, media_type, area_id, lat, long):
+def add_media(name, path, media_type, area_id, long, lat): #lat lang was reversed
     result = False
     name = name.strip()
     path = path.strip()
