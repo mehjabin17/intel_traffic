@@ -21,8 +21,8 @@ def format_media(media, sl=0, area_name=None):
         "created_by": media.user.email,
         "created_at": media.time_created,
         "updated_at": media.time_updated,
-        "lat": media.lat,
-        "lng": media.long
+        "lat": media.long,
+        "lng": media.lat
     }
 
 
