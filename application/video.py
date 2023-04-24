@@ -28,7 +28,7 @@ def stop_record_clip():
 
 @video.route('/is-recording')
 def is_video_recoding():
-    pass
+    file = pass
 
 
 @video.route('/create-clip', methods=['POST'])
