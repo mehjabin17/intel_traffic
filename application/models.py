@@ -24,12 +24,7 @@ class User(db.Model, UserMixin):
 
 
 class Area(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(150), nullable=False, unique=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    medias = db.relationship('Media')
-    time_created = db.Column(DateTime(timezone=True), server_default=func.now())
-    time_updated = db.Column(DateTime(timezone=True), onupdate=func.now())
+    pass
 
 
 class Media(db.Model):
