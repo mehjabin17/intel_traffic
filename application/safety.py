@@ -6,6 +6,7 @@ safety = Blueprint('safety', __name__)
 @safety.route('/safety')
 @login_required
 def show_safety():
-    return 'hello world'
+    return render_template("safety.html")
+
 
 
