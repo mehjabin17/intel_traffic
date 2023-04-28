@@ -12,18 +12,7 @@ def format_media_list(medias):
 
 
 def format_media(media, sl=0, area_name=None):
-    return {
-        "sl": sl,
-        "name": media.name,
-        "id": fernet.encrypt(str(media.id).encode()).decode(),
-        "area": area_name if area_name is not None else media.area.name,
-        "path": media.path,
-        "created_by": media.user.email,
-        "created_at": media.time_created,
-        "updated_at": media.time_updated,
-        "lat": media.lat,
-        "lng": media.long
-    }
+   pass
 
 
 def format_area_list(areas, current_area=None):
