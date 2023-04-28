@@ -2,7 +2,21 @@
 {% block pagetitle %} Safe Zone {% endblock %}
 {% block pagehead %} <h5><i class="bi bi-{{  vars['page-icon'] }}"></i> Safe Zone</h5> {% endblock %}
 {% block content %}
-Hello
+<div class="row">
+<div class="col-8">
+    <div class="card p-1 home-area-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d7300.464930573399!2d90.4125214!3d23.8103313!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1682707464199!5m2!1sen!2sbd" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+<div class="col-4">
+    <div class="card p-1 home-area-map">
+        <div class="card-header">Women only bus routes</div>
+        <div class="card-body">
+            <img class="img-fluid" src="{{ url_for('static', filename='images/women.png') }}"/>
+        </div>
+    </div>
+</div>
+</div>
 {% endblock %}
 {% block page_script %}
 <script>
