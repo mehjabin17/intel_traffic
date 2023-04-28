@@ -102,7 +102,7 @@ def create_app():
         nav.Item('Live', 'video.play_video', html_attrs={'icon': 'webcam'}),
         nav.Item('Analytics', 'video.analytics', html_attrs={'icon': 'bar-chart-line'}),
         nav.Item('Clips', 'video.clips', html_attrs={'icon': 'record'}),
-        nav.Item('Safe Zone', 'safety.show_safety', html_attrs={'icon': 'record'}),
+        nav.Item('Road', 'safety.show_safety', html_attrs={'icon': 'activity'}),
         nav.Item('Settings', 'view.settings', html_attrs={'icon': 'gear'})
     ])
 
