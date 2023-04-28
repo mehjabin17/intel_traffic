@@ -18,6 +18,9 @@ UPLOAD_FOLDER = './uploads'
 CLIP_FOLDER = './clips'
 RECORDS_FOLDER = "./records"
 SECRET_KEY = "The World is not Enough"
+SESSION_CLIP_KEY = 'current_clip'
+SESSION_AREA_KEY = 'current_area'
+SESSION_TAB_KEY = 'tab'
 
 kdf = PBKDF2HMAC(
     algorithm=hashes.SHA256(),
@@ -27,7 +30,6 @@ kdf = PBKDF2HMAC(
 )
 key = base64.urlsafe_b64encode(kdf.derive(password))
 fernet = Fernet(key)
-
 
 
 def create_database(app, drop=False, create=False):
@@ -86,18 +88,21 @@ def create_app():
     from .view import view
     from .auth import auth
     from .video import video
+    from .safety import safety
 
     app.register_blueprint(view, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(video, url_prefix='/')
+    app.register_blueprint(safety, url_prefix='/')
 
     # register menu items
     nav = Navigation(app)
     nav.Bar('top', [
         nav.Item('Home', 'view.home', html_attrs={'icon': 'house-door'}),
-        nav.Item('Live', 'view.video', html_attrs={'icon': 'webcam'}),
-        nav.Item('Analytics', 'view.analytics', html_attrs={'icon': 'bar-chart-line'}),
-        nav.Item('Clips', 'view.clips', html_attrs={'icon': 'record'}),
+        nav.Item('Live', 'video.play_video', html_attrs={'icon': 'webcam'}),
+        nav.Item('Analytics', 'video.analytics', html_attrs={'icon': 'bar-chart-line'}),
+        nav.Item('Clips', 'video.clips', html_attrs={'icon': 'record'}),
+        nav.Item('Safe Zone', 'safety.show_safety', html_attrs={'icon': 'record'}),
         nav.Item('Settings', 'view.settings', html_attrs={'icon': 'gear'})
     ])
 
