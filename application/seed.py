@@ -16,7 +16,6 @@ initial_users = [
         'pass': '1234'
     },
     {
-        'email': 'julkar@gmail.com',
-        'pass': '1234'
+        
     }
 ]
